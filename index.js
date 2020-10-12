@@ -16,9 +16,7 @@ Go code!
 const express = require("express")
 const cors = require("cors")
 const projectRouter = require("./data/routers/projectRouter")
-const actionRouter = require("./data/Routers/actionRouter")
-const logger = require("./data/middleware/logger")
-
+const actionRouter = require("./data/routers/actionRouter")
 
 const server = express()
 const port = 3000
@@ -27,15 +25,9 @@ server.use(express.json())
 server.use(cors())
 server.unsubscribe(logger({format: "long"}))
 
-server.use("/api/projects", projectRouter)
-server.use("/api/projects/:id/actions", actionRouter)
+server.use(projectRouter)
+server.use(actionRouter)
 
-server.use((err, req, res, next) => {
-    console.log(err)
-    res.status(500).json({
-        messge: "Error"
-    })
-})
 
 server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`)
