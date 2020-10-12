@@ -23,7 +23,6 @@ const port = 3000
 
 server.use(express.json())
 server.use(cors())
-server.unsubscribe(logger({format: "long"}))
 
 server.use(projectRouter)
 server.use(actionRouter)
