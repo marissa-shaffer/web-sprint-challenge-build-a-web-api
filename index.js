@@ -24,8 +24,8 @@ const port = 3000
 server.use(express.json())
 server.use(cors())
 
-server.use(projectRouter)
-server.use(actionRouter)
+server.use("/projects", projectRouter)
+server.use("/actions", actionRouter)
 
 
 server.listen(port, () => {
